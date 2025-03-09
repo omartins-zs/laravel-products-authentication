@@ -26,21 +26,25 @@ Route::middleware(['auth'])->group(function () {
     })->middleware('verified')->name('dashboard');
 
     Route::get('/hardware-products/create', [HardwareProductController::class, 'create'])
-        ->name('hardware_products.create'); // <--- Adicionando a rota create
+        ->name('hardware_products.create');
 
     Route::post('/hardware-products', [HardwareProductController::class, 'store'])
-        ->name('hardware_products.store'); // <--- Adicionando a rota store
+        ->name('hardware_products.store');
 
     Route::get('/hardware-products/{id}', [HardwareProductController::class, 'show'])
+        ->where('id', '[0-9]+')
         ->name('hardware_products.show');
 
     Route::get('/hardware-products/{id}/edit', [HardwareProductController::class, 'edit'])
+        ->where('id', '[0-9]+')
         ->name('hardware_products.edit');
 
     Route::put('/hardware-products/{id}', [HardwareProductController::class, 'update'])
+        ->where('id', '[0-9]+')
         ->name('hardware_products.update');
 
     Route::delete('/hardware-products/{id}', [HardwareProductController::class, 'destroy'])
+        ->where('id', '[0-9]+')
         ->name('hardware_products.destroy');
 });
 
