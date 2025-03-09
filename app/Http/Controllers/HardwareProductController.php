@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\HardwareProductRequest;
 use App\Models\HardwareProduct;
+use App\Services\DatabaseLogger;
 use Illuminate\Support\Facades\Log;
 
 class HardwareProductController extends Controller
@@ -25,7 +26,9 @@ class HardwareProductController extends Controller
     public function store(HardwareProductRequest $request)
     {
         $product = HardwareProduct::create($request->validated());
-        Log::info('Produto de hardware cadastrado', ['product_id' => $product->id]);
+        DatabaseLogger::log('info', 'Produto de hardware cadastrado', [
+            'product_id' => $product->id
+        ]);
         return redirect()->route('hardware_products.index')
             ->with('success', 'Produto cadastrado com sucesso!');
     }
@@ -49,7 +52,9 @@ class HardwareProductController extends Controller
     {
         $product = HardwareProduct::findOrFail($id);
         $product->update($request->validated());
-        Log::info('Produto de hardware atualizado', ['product_id' => $product->id]);
+        DatabaseLogger::log('info', 'Produto de hardware atualizado', [
+            'product_id' => $product->id
+        ]);
         return redirect()->route('hardware_products.index')
             ->with('success', 'Produto atualizado com sucesso!');
     }
@@ -59,7 +64,9 @@ class HardwareProductController extends Controller
     {
         $product = HardwareProduct::findOrFail($id);
         $product->delete();
-        Log::info('Produto de hardware removido', ['product_id' => $product->id]);
+        DatabaseLogger::log('info', 'Produto de hardware removido', [
+            'product_id' => $product->id
+        ]);
         return redirect()->route('hardware_products.index')
             ->with('success', 'Produto removido com sucesso!');
     }
