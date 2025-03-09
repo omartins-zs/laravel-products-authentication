@@ -60,13 +60,13 @@ class HardwareProductController extends Controller
     }
 
     // Remove um produto
-    public function destroy($id)
+    public function destroy($id, DatabaseLogger $logger)
     {
         $product = HardwareProduct::findOrFail($id);
         $product->delete();
-        DatabaseLogger::log('info', 'Produto de hardware removido', [
-            'product_id' => $product->id
-        ]);
+
+        $logger->log('info', 'Produto de hardware removido', ['product_id' => $product->id]);
+
         return redirect()->route('hardware_products.index')
             ->with('success', 'Produto removido com sucesso!');
     }
