@@ -15,6 +15,7 @@ class LogEntry extends Model
         'level',
         'message',
         'context',
+        'user_id',
         'created_at',
     ];
 }
