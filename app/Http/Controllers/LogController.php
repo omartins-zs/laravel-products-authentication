@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
-    // app/Http/Controllers/LogController.php
-    public function index()
+    public function index(Request $request)
     {
-        $logs = LogEntry::orderBy('created_at', 'desc')->paginate(20);
-        return response()->json($logs);
+        $logs = LogEntry::with('user')
+            ->when($request->level, fn($query, $level) => $query->where('level', $level))
+            ->latest('created_at')
+            ->paginate(20);
+
+        return view('logs.index', compact('logs'));
     }
 }

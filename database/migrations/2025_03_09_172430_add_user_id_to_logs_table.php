@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('logs', function (Blueprint $table) {
-            // Adiciona a coluna 'user_id' que pode ser nula
-            $table->unsignedBigInteger('user_id')->nullable();
-        });
+        if (!Schema::hasColumn('logs', 'user_id')) {
+            Schema::table('logs', function (Blueprint $table) {
+                $table->unsignedBigInteger('user_id')->nullable()->after('context');
+            });
+        }
     }
 
     /**
@@ -22,9 +23,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('logs', function (Blueprint $table) {
-            // Remove a coluna 'user_id' caso seja necessário reverter a migration
-            $table->dropColumn('user_id');
-        });
+        if (Schema::hasColumn('logs', 'user_id')) {
+            Schema::table('logs', function (Blueprint $table) {
+                $table->dropColumn('user_id');
+            });
+        }
     }
 };
