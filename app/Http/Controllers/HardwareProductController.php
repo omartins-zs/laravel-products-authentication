@@ -12,6 +12,8 @@ class HardwareProductController extends Controller
     // Lista todos os produtos
     public function index()
     {
+        Log::info('Este é um log de teste', ['contexto' => 'valor']);
+
         $products = HardwareProduct::all();
         return view('hardware_products.index', compact('products'));
     }
