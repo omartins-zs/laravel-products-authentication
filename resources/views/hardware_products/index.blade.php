@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-    <h2 class="text-2xl font-semibold text-gray-800">Produtos de Hardware</h2>
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Produtos de Hardware</h2>
 
-    @if (session('success'))
+    {{-- @if (session('success'))
         <div class="bg-green-500 text-white p-2 rounded my-3">
             {{ session('success') }}
         </div>
-    @endif
+    @endif --}}
 
     <div class="mt-4">
         <a href="{{ route('hardware_products.create') }}"

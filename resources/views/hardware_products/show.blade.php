@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Detalhes do Produto</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Detalhes do Produto</h2>
 
         <div class="bg-gray-100 p-6 rounded-lg shadow-md">
             <div class="mb-4">

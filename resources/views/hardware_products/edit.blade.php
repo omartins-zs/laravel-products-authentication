@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Editar Produto de Hardware</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Editar Produto de Hardware</h2>
 
         <!-- Mensagens de erro -->
         @if ($errors->any())

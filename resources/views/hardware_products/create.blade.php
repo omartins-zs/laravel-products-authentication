@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-    <h2 class="text-2xl font-semibold text-gray-800">Novo Produto de Hardware</h2>
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Novo Produto de Hardware</h2>
 
     @if ($errors->any())
         <div class="bg-red-500 text-white p-3 rounded my-3">
