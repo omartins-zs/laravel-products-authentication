@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HardwareProductController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,10 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->middleware('verified')->name('dashboard');
 
+    Route::get('/logs', [LogController::class, 'index'])
+    ->name('logs.index')
+    ->middleware('auth');
+
     Route::get('/hardware-products/create', [HardwareProductController::class, 'create'])
         ->name('hardware_products.create');
 
@@ -47,7 +52,5 @@ Route::middleware(['auth'])->group(function () {
         ->where('id', '[0-9]+')
         ->name('hardware_products.destroy');
 });
-
-
 
 require __DIR__ . '/auth.php';
