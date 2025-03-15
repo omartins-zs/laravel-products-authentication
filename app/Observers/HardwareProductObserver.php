@@ -3,46 +3,31 @@
 namespace App\Observers;
 
 use App\Models\HardwareProduct;
+use Illuminate\Support\Facades\Log;
 
 class HardwareProductObserver
 {
     /**
-     * Handle the HardwareProduct "created" event.
+     * Acionado quando um produto é criado
      */
-    public function created(HardwareProduct $hardwareProduct): void
+    public function created(HardwareProduct $hardwareProduct)
     {
-        //
+        Log::info("Produto criado: {$hardwareProduct->name}, Preço: R$ {$hardwareProduct->price}, Estoque: {$hardwareProduct->stock}");
     }
 
     /**
-     * Handle the HardwareProduct "updated" event.
+     * Acionado quando um produto é atualizado
      */
-    public function updated(HardwareProduct $hardwareProduct): void
+    public function updated(HardwareProduct $hardwareProduct)
     {
-        //
+        Log::info("Produto atualizado: {$hardwareProduct->name}, Novo Preço: R$ {$hardwareProduct->price}, Estoque Atual: {$hardwareProduct->stock}");
     }
 
     /**
-     * Handle the HardwareProduct "deleted" event.
+     * Acionado quando um produto é excluído
      */
-    public function deleted(HardwareProduct $hardwareProduct): void
+    public function deleted(HardwareProduct $hardwareProduct)
     {
-        //
-    }
-
-    /**
-     * Handle the HardwareProduct "restored" event.
-     */
-    public function restored(HardwareProduct $hardwareProduct): void
-    {
-        //
-    }
-
-    /**
-     * Handle the HardwareProduct "force deleted" event.
-     */
-    public function forceDeleted(HardwareProduct $hardwareProduct): void
-    {
-        //
+        Log::warning("Produto excluído: {$hardwareProduct->name}");
     }
 }
