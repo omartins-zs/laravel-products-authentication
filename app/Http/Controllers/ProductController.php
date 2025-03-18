@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\HardwareProductRequest;
-use App\Models\HardwareProduct;
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use App\Services\DatabaseLogger;
 use Illuminate\Support\Facades\Log;
 
-class HardwareProductController extends Controller
+class ProductController extends Controller
 {
     // Lista todos os produtos
     public function index()
     {
         Log::info('Este é um log de teste', ['contexto' => 'valor']);
 
-        $products = HardwareProduct::all();
+        $products = Product::all();
         return view('hardware_products.index', compact('products'));
     }
 
@@ -25,9 +25,9 @@ class HardwareProductController extends Controller
     }
 
     // Salva um novo produto
-    public function store(HardwareProductRequest $request)
+    public function store(ProductRequest $request)
     {
-        $product = HardwareProduct::create($request->validated());
+        $product = Product::create($request->validated());
         DatabaseLogger::log('info', 'Produto de hardware cadastrado', [
             'product_id' => $product->id
         ]);
@@ -38,21 +38,21 @@ class HardwareProductController extends Controller
     // Exibe os detalhes de um produto
     public function show($id)
     {
-        $product = HardwareProduct::findOrFail($id);
+        $product = Product::findOrFail($id);
         return view('hardware_products.show', compact('product'));
     }
 
     // Exibe o formulário para editar um produto
     public function edit($id)
     {
-        $product = HardwareProduct::findOrFail($id);
+        $product = Product::findOrFail($id);
         return view('hardware_products.edit', compact('product'));
     }
 
     // Atualiza os dados de um produto
-    public function update(HardwareProductRequest $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        $product = HardwareProduct::findOrFail($id);
+        $product = Product::findOrFail($id);
         $product->update($request->validated());
         DatabaseLogger::log('info', 'Produto de hardware atualizado', [
             'product_id' => $product->id
@@ -64,7 +64,7 @@ class HardwareProductController extends Controller
     // Remove um produto
     public function destroy($id, DatabaseLogger $logger)
     {
-        $product = HardwareProduct::findOrFail($id);
+        $product = Product::findOrFail($id);
         $product->delete();
 
         $logger->log('info', 'Produto de hardware removido', ['product_id' => $product->id]);

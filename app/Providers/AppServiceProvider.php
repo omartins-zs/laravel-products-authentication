@@ -6,8 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Log\Events\MessageLogged;
 use App\Listeners\LogDatabaseListener;
 use Illuminate\Support\Facades\Event;
-use App\Observers\HardwareProductObserver;
-use App\Models\HardwareProduct;
+use App\Models\Product;
+use App\Observers\ProductObserver;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
 
 
         // Registro de Observers
-        HardwareProduct::observe(HardwareProductObserver::class);
+        Product::observe(ProductObserver::class);
     }
 }
