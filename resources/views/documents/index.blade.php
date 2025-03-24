@@ -4,7 +4,7 @@
 <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6">
     <h2 class="text-2xl font-semibold text-gray-800 mb-4">📂 Documentos</h2>
 
-    <a href="{{ route('upload.form') }}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+    <a href="{{ route('upload.form') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         ➕ Adicionar Novo Documento
     </a>
 
