@@ -13,7 +13,7 @@ class ProductObserver
     public function created(Product $product)
     {
         Log::info("Produto criado: {$product->name}, Preço: R$ {$product->price}, Estoque: {$product->stock}");
-        dd('Observer funcionando!', $product);
+        // dd('Observer funcionando!', $product);
     }
 
     /**
