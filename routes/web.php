@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -52,5 +53,16 @@ Route::middleware(['auth'])->group(function () {
         ->where('id', '[0-9]+')
         ->name('hardware_products.destroy');
 });
+
+// 📂 Upload de arquivos
+Route::get('/upload', function () {
+    return view('upload');
+})->name('upload.form');
+
+Route::post('/upload', [DocumentController::class, 'store'])->name('upload.store');
+
+Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
+Route::get('/document/{document}', [DocumentController::class, 'show'])->name('document.show');
+Route::delete('/document/{document}', [DocumentController::class, 'destroy'])->name('document.destroy');
 
 require __DIR__ . '/auth.php';
